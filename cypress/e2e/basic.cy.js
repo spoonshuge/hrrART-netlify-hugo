@@ -1,21 +1,16 @@
-describe('Heidi Muses Art Page', () => {
-  before(() => {
-    // Visit the website
-    cy.visit('http://localhost:1313');
-  });
-
-  it('displays the ART heading', () => {
-    // Check for the "ART" heading
-    cy.contains('h1', 'ART').should('be.visible');
-  });
-
-  it('renders the main image', () => {
-    // Check for the main image
-    cy.get('img').should('be.visible');
-  });
-
-  it('displays the caption', () => {
-    // Check for the caption "Just a sample"
-    cy.contains('Just a sample').should('be.visible');
-  });
-});
+describe('empty spec', () => {
+  beforeEach(() => {
+    cy.visit('/')
+  })
+  it('displays the resources text', () => {
+    cy.get('h2')
+    .contains('This is a bare-bones Hugo project that has everything you need to quickly deploy it to Netlify');
+  })
+  it('renders the image', () => {
+    cy.get('img')
+    .should('be.visible')
+    .and(($img) => {
+      expect($img[0].naturalWidth).to.be.greaterThan(0);
+    })
+  })
+})
