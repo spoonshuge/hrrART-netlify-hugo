@@ -1,0 +1,65 @@
+<footer>
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js" defer></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        console.log('Document loaded');
+        var swiperScriptLoaded = document.querySelector('script[src="https://unpkg.com/swiper/swiper-bundle.min.js"]');
+        if (swiperScriptLoaded) {
+          console.log('Swiper JS loaded');
+          var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            centeredSlides: true,
+            pagination: {
+              el: '.swiper-pagination',
+              clickable: true,
+            },
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },
+          });
+          console.log('Swiper initialized:', swiper);
+        } else {
+          console.error('Swiper JS not loaded');
+        }
+  
+        // Modal Image Script
+        var modal = document.createElement('div');
+        modal.classList.add('modal');
+        document.body.appendChild(modal);
+  
+        var modalContent = document.createElement('div');
+        modalContent.classList.add('modal-content');
+        modal.appendChild(modalContent);
+  
+        var close = document.createElement('span');
+        close.classList.add('close');
+        close.innerHTML = '&times;';
+        modal.appendChild(close);
+  
+        var imgElement = document.createElement('img');
+        modalContent.appendChild(imgElement);
+  
+        var swiperSlides = document.querySelectorAll('.swiper-slide img');
+        swiperSlides.forEach(function(img) {
+          img.addEventListener('click', function() {
+            modal.style.display = "block";
+            imgElement.src = this.src;
+          });
+        });
+  
+        close.addEventListener('click', function() {
+          modal.style.display = "none";
+        });
+  
+        window.addEventListener('click', function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        });
+      });
+    </script>
+  </footer>
+  
